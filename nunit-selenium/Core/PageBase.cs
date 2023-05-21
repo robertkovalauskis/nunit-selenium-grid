@@ -32,5 +32,9 @@ namespace nunit_selenium.Core
             Driver = driver;
             PageFactory.InitElements(driver, this);
         }
+
+        protected PageBase()
+        {
+        }
     }
 }
