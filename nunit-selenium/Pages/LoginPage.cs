@@ -22,9 +22,6 @@ namespace nunit_selenium.Pages
         [FindsBy(How = How.Id, Using = "signinButton")]
         public IWebElement ContinueButton { get; private set; }
 
-        [FindsBy(How = How.CssSelector, Using = "#primary-box > div.box-error > span")]
-        public IWebElement ErrorMsg { get; private set; }
-
         public LoginPage(IWebDriver driver) : base(driver)
         {
         }
@@ -82,7 +79,7 @@ namespace nunit_selenium.Pages
         private void TypeUserName()
         {
             string username = config.GetValue<string>("EasycruitUsername");
-            Console.WriteLine("EasycruitUsername is: " + username);
+            Console.WriteLine("Username is: " + username);
             Driver.WaitForPageUntilIWebElementIsClickable(UserName);
             UserName.SendKeys(username);
         }
