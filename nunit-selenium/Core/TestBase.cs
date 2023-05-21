@@ -15,8 +15,8 @@ public class TestBase
         public void SetupDriver()
         {
             /* Choose WebDriver initialization method */
-            // SetupDriverToRunTestsOnSeleniumGrid();
-            SetupDriverToRunTestsLocally();
+            SetupDriverToRunTestsOnSeleniumGrid();
+            // SetupDriverToRunTestsLocally();
 
             InitializePageObjects(); // (only after the WebDriver is initialised)
         }
