@@ -39,30 +39,6 @@ namespace nunit_selenium.Pages
             return this;
         }
 
-        public LoginPage LoginWithNewUser(string username, string password = null)
-        {
-            NavigateTo();
-            TypeCompany();
-            ContinueButton.Click();
-            TypeUserName(username);
-            TypePassword(password);
-            ContinueButton.Click();
-
-            return this;
-        }
-
-        private void TypePassword(string pwd)
-        {
-            var password = String.IsNullOrEmpty(pwd) ? config.GetValue<string>("Password") : pwd;
-            Password.SendKeys(password);
-            Console.WriteLine("Password is: " + password);
-        }
-
-        private void TypeUserName(string username)
-        {
-            UserName.SendKeys(username);
-        }
-
         private void NavigateTo()
         {
             string base_url = config.GetValue<string>("ApplicationBaseUrl");
@@ -78,7 +54,7 @@ namespace nunit_selenium.Pages
 
         private void TypeUserName()
         {
-            string username = config.GetValue<string>("EasycruitUsername");
+            string username = config.GetValue<string>("ProjectUsername");
             Console.WriteLine("Username is: " + username);
             Driver.WaitForPageUntilIWebElementIsClickable(UserName);
             UserName.SendKeys(username);

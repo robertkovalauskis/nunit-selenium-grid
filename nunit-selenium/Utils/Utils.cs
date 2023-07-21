@@ -16,7 +16,7 @@ namespace nunit_selenium.Utils
         public static string GenerateRandomEmail(int length)
         {
             string generatedString = GenerateRandomStringWithoutSpecialChar(length);
-            generatedString += "@dog.lv";
+            generatedString += "@dummy.com";
             return generatedString;
         }
 

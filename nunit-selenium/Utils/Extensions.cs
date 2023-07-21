@@ -1,5 +1,4 @@
-﻿using nunit_selenium.Core;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -13,12 +12,6 @@ namespace nunit_selenium.Utils
         {
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[window]);
-        }
-
-        public static void ScrollTo(this PageBase pageBase, IWebElement element)
-        {
-            // var driver = pageBase.GetDriver();
-            // ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
         }
 
         public static void WaitForNavigation(this IWebDriver driver)
@@ -105,52 +98,6 @@ namespace nunit_selenium.Utils
             }
 
             return result;
-        }
-
-        public static bool IsCheckboxChecked(this IWebDriver driver, IWebElement element)
-        {
-            // if (element.Checkbox().IsTicked())
-            // {
-            //     return true;
-            // }
-            // else
-            // {
-            //     return false;
-            // }
-            return false;
-        }
-
-        public static IWebElement FindNotStaleElement(this IWebDriver driver, By by)
-        {
-            int attempts = 0;
-            while (attempts < 2)
-            {
-                try
-                {
-                    driver.FindElement(by);
-                    break;
-                }
-                catch (StaleElementReferenceException e)
-                {
-                }
-
-                attempts++;
-            }
-
-            return driver.FindElement(by);
-        }
-
-        public static bool LinkTextIsOnPage(this IWebDriver driver, By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
         }
 
         public static void WaitUntilElementDisappeared(this IWebDriver driver, By by)
