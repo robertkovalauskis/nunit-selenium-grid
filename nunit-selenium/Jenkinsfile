@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-                bat "docker build -t='kovalauskis/nunit-selenium-grid' ."
+                bat "docker build -t=kovalauskis/nunit-selenium-grid ."
             }
         }
         stage('Push Image') {
