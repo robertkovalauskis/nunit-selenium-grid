@@ -8,12 +8,6 @@ namespace nunit_selenium.Utils
     {
         private static readonly int Timeout = 10;
 
-        public static void CloseCurrentWindowSwitchTo(this IWebDriver driver, int window)
-        {
-            driver.Close();
-            driver.SwitchTo().Window(driver.WindowHandles[window]);
-        }
-
         public static void WaitForNavigation(this IWebDriver driver)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Timeout));
@@ -43,6 +37,18 @@ namespace nunit_selenium.Utils
                 .Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
+        public static void WaitUntilTextValueHasChanged(this IWebDriver driver, IWebElement element)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            string initialText = element.Text;
+            
+            wait.Until((d) =>
+            {
+                string currentText = element.Text;
+                return !currentText.Equals(initialText);
+            });
+        }
+
 
         public static IWebElement WaitForPageUntilIWebElementIsClickable(this IWebDriver driver, IWebElement element,
             int setTimeout)
@@ -68,36 +74,6 @@ namespace nunit_selenium.Utils
             }
 
             return driver.FindElement(locator);
-        }
-
-
-        public static bool ClickOnVisibleElement(this IWebDriver driver, IWebElement element, By locator,
-            int attemptsNum)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Timeout));
-            wait.Until(ExpectedConditions.ElementToBeClickable(locator));
-
-            bool result = false;
-            int attempts = 0;
-            while (attempts < attemptsNum)
-            {
-                {
-                    try
-                    {
-                        driver.FindElement(locator).Click();
-                        result = true;
-                        break;
-                    }
-                    catch (StaleElementReferenceException e)
-                    {
-                    }
-
-                    attempts++;
-                    Thread.Sleep((int)Math.Pow(1, attempts) * 1000);
-                }
-            }
-
-            return result;
         }
 
         public static void WaitUntilElementDisappeared(this IWebDriver driver, By by)
