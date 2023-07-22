@@ -6,7 +6,7 @@ services:
       - "4444:4444"
   chrome1:
     image: selenium/node-chrome:4.10.0
-    shm_size: '2g'
+    shm_size: '1g'
     depends_on:
       - hub
     environment:
@@ -15,7 +15,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   chrome2:
     image: selenium/node-chrome:4.10.0
-    shm_size: '2g'
+    shm_size: '1g'
     depends_on:
       - hub
     environment:
@@ -24,7 +24,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   chrome3:
     image: selenium/node-chrome:4.10.0
-    shm_size: '2g'
+    shm_size: '1g'
     depends_on:
       - hub
     environment:
@@ -33,7 +33,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   firefox1:
     image: selenium/node-firefox:4.10.0
-    shm_size: '2g'
+    shm_size: '1g'
     depends_on:
       - hub
     environment:
@@ -42,7 +42,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
   firefox2:
     image: selenium/node-firefox:4.10.0
-    shm_size: '2g'
+    shm_size: '1g'
     depends_on:
       - hub
     environment:
