@@ -3,10 +3,12 @@ using nunit_selenium.Core;
 using nunit_selenium.Pages;
 using nunit_selenium.Utils;
 using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
 
 namespace nunit_selenium.Tests;
 
+[AllureNUnit]
 [TestFixture]
 public class GitHubUsersSearchTest : TestBase
 {
