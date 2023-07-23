@@ -14,8 +14,8 @@ public class TestBase
     public void SetupDriver()
     {
         /* Choose WebDriver initialization method */
-        SetupDriverToRunTestsOnSeleniumGrid();
-        // SetupDriverToRunTestsLocally();
+        // SetupDriverToRunTestsOnSeleniumGrid();
+        SetupDriverToRunTestsLocally();
     }
 
     [TearDown]
