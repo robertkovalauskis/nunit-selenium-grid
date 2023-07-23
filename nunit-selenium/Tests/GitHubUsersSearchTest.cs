@@ -8,8 +8,8 @@ using NUnit.Framework;
 
 namespace nunit_selenium.Tests;
 
-[AllureNUnit]
 [TestFixture]
+[AllureNUnit]
 public class GitHubUsersSearchTest : TestBase
 {
     private GitHubUserSearchPage _gitHubUserSearchPage;
@@ -20,12 +20,12 @@ public class GitHubUsersSearchTest : TestBase
         _gitHubUserSearchPage = new GitHubUserSearchPage(Driver);
     }
     
+    [Test]
+    [Category("Smoke")]
     [AllureEpic("Epic Name")]
     [AllureFeature("Feature Name")]
     [AllureStory("User Story Name")]
     [AllureSeverity(SeverityLevel.normal)]
-    [Test]
-    [Category("Smoke")]
     public void GitHubUsersSearch()
     {
         Driver.Navigate().GoToUrl(Constants.GITHUB_USER_SEARCH_URL);
