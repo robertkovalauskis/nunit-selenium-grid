@@ -22,9 +22,8 @@ public class GitHubUsersSearchTest : TestBase
     
     [Test]
     [Category("Smoke")]
-    [AllureEpic("Epic Name")]
-    [AllureFeature("Feature Name")]
-    [AllureStory("User Story Name")]
+    [AllureTag("Smoke")]
+    [AllureSuite("Smoke tests")]
     [AllureSeverity(SeverityLevel.normal)]
     public void GitHubUsersSearch()
     {
