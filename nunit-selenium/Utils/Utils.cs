@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using nunit_selenium.Core;
+﻿using nunit_selenium.Core;
 using OpenQA.Selenium;
 
 namespace nunit_selenium.Utils
@@ -76,19 +75,6 @@ namespace nunit_selenium.Utils
             return value.ToString("(yyyy MMMM dd - HH:mm)");
         }
 
-        public string GetDepartmentNameFromConfig()
-        {
-            string companyName = config.GetValue<string>("CompanyName");
-            return companyName;
-        }
-
-        public void FillIframe(IWebDriver driver, string iframe, IWebElement element, string text)
-        {
-            driver.SwitchTo().Frame(iframe);
-            element.SendKeys(text);
-            driver.SwitchTo().DefaultContent();
-        }
-
         public static bool GetHeaders(string url)
         {
             using (var client = new HttpClient())
@@ -98,10 +84,8 @@ namespace nunit_selenium.Utils
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
+
+                return false;
             }
         }
 
@@ -115,7 +99,7 @@ namespace nunit_selenium.Utils
             IWebElement root2 = shadow1.FindElement(By.CssSelector("downloads-item"));
             IWebElement shadow2 = driver.AllocateShadowDOMIWebElement(root2);
             IWebElement file = shadow2.FindElement(By.Id("file-link"));
-            string filename = file.Text.ToString();
+            string filename = file.Text;
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
