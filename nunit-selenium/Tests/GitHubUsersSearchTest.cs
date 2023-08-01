@@ -15,7 +15,7 @@ public class GitHubUsersSearchTest : TestBase
     private GitHubUserSearchPage _gitHubUserSearchPage;
     
     [SetUp]
-    public new void InitializePageObjects()
+    public void InitializePageObjects()
     {
         _gitHubUserSearchPage = new GitHubUserSearchPage(Driver);
     }
