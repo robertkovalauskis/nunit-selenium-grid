@@ -8,9 +8,13 @@ namespace nunit_selenium.Utils
     {
         private static Random _rnd = new Random();
 
-        public static string GetFilePath(string fileName)
+        public static void UploadFileOnRemoteMachine(IWebElement webElement, string file)
         {
-            return Constants.TEST_FILES_FOLDER_PATH + fileName;
+            /* make sure that the Local file detector is enabled (in the TestBase.cs)
+            for more info check Selenium documentation (Remote Web Driver) */
+
+            webElement.SendKeys(file);
+            Console.WriteLine("File path is: " + file);
         }
 
         public static string GenerateRandomEmail(int length)
