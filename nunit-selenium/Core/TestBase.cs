@@ -58,15 +58,17 @@ public class TestBase
         // RemoteWebDriver doesn't know what browser we need to use 
         // that's why we specify options (DriverOptions) 
         Driver = new RemoteWebDriver(new Uri(completeUrl), options);
+        
+        Driver.Manage().Window.Maximize();
+        EnableLocalFileDetector(); // needs to be enabled for uploading files in tests on Remote Machines
+    }
 
-        /* The Local File Detector allows the transfer of files
-        from the client machine to the remote server. */
+    private void EnableLocalFileDetector() //  allows the transfer of files from the client machine to the remote server
+    {
         var allowsDetection = Driver as IAllowsFileDetection;
         if (allowsDetection != null)
         {
             allowsDetection.FileDetector = new LocalFileDetector();
         }
-
-        Driver.Manage().Window.Maximize();
     }
 }
