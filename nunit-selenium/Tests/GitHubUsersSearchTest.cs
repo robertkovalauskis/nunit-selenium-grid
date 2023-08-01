@@ -1,4 +1,4 @@
-using Allure.Net.Commons;
+using Microsoft.Extensions.Configuration;
 using nunit_selenium.Core;
 using nunit_selenium.Pages;
 using nunit_selenium.Utils;
@@ -24,10 +24,10 @@ public class GitHubUsersSearchTest : TestBase
     [Category("Smoke")]
     [AllureTag("Smoke")]
     [AllureSuite("Smoke tests")]
-    [AllureSeverity(SeverityLevel.normal)]
     public void GitHubUsersSearch()
     {
-        Driver.Navigate().GoToUrl(Constants.GITHUB_USER_SEARCH_URL);
+        // Driver.Navigate().GoToUrl(Constants.GITHUB_USER_SEARCH_URL);
+        Driver.Navigate().GoToUrl(config.GetValue<string>("GitHubUserSearchPage"));
         _gitHubUserSearchPage.FindUserByUsername("robertkovalauskis");
 
         Driver.WaitUntilTextValueHasChanged(_gitHubUserSearchPage.userName);

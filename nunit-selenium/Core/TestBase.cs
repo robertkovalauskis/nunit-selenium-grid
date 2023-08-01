@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,6 +12,22 @@ namespace nunit_selenium.Core;
 public class TestBase
 {
     protected IWebDriver Driver;
+    
+    static string[] args = null;
+    // Use ASPNETCORE_ENVIRONMENT env variable to choose env for test execution
+    private static IHost host = Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((context, builder) =>
+    {
+        builder
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json",
+                optional: true,
+                reloadOnChange: true)
+            .AddEnvironmentVariables();
+    }).Build();
+
+    // initialize IConfiguration to retrieve parameters from appsettings.json files
+    protected IConfiguration config = host.Services.GetRequiredService<IConfiguration>();
 
     [SetUp]
     public void SetupDriver()
