@@ -22,4 +22,4 @@ WORKDIR /App
 COPY . ./
 
 # Set the entry point to run tests when the container is started
-CMD ["dotnet", "test"]
+ENTRYPOINT ["dotnet", "test"]
