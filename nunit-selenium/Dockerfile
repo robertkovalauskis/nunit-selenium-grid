@@ -23,12 +23,10 @@ COPY . ./
 RUN dotnet restore
 # Build and publish a release
 RUN dotnet publish -c Release -o out
+# Run tests
+RUN dotnet test --filter TestCategory="$CATEGORY" --logger html
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
-WORKDIR /App
-COPY --from=build-env /App/out .
-
+# Variables
 ENV HUB_HOST localhost 
 ENV BROWSER chrome
 ENV CATEGORY Smoke
@@ -36,4 +34,8 @@ ENV ASPNETCORE_ENVIRONMENT Development
 ENV ProjectUsername CompleteUser
 ENV Password defaultPassword123
 
-ENTRYPOINT dotnet test --filter TestCategory="$CATEGORY" --logger html
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+WORKDIR /App
+COPY --from=build-env /App/out .
+ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
