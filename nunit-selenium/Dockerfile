@@ -23,8 +23,6 @@ COPY . ./
 RUN dotnet restore
 # Build and publish a release
 RUN dotnet publish -c Release -o out
-# Run tests
-RUN dotnet test --filter TestCategory="$CATEGORY" --logger html
 
 # Variables
 ENV HUB_HOST localhost 
@@ -38,4 +36,5 @@ ENV Password defaultPassword123
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /App
 COPY --from=build-env /App/out .
-ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
+#ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
+ENTRYPOINT dotnet test --filter TestCategory="$CATEGORY" --logger html
