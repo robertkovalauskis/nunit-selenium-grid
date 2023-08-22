@@ -10,4 +10,4 @@ ENV ASPNETCORE_ENVIRONMENT Development
 ENV ProjectUsername CompleteUser
 ENV Password defaultPassword123
 
-ENTRYPOINT ["dotnet", "test", "--filter", "TestCategory=$CATEGORY", "--logger", "html"]
+ENTRYPOINT ["dotnet", "test", "--filter", "TestCategory=\"$CATEGORY\"", "--logger", "html"]
