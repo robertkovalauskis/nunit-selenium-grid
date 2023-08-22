@@ -15,7 +15,7 @@
 #ENTRYPOINT dotnet test --filter TestCategory="$CATEGORY" --logger html
 
 # Use the ASP.NET runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /App
 
 # Copy the published application
